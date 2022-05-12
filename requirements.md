@@ -38,8 +38,8 @@ Requirements
 
 Java Conventions
 
-> camelCase for methods and attributes
-> PascalCase for classes
+- camelCase for methods and attributes
+- PascalCase for classes
 
 
 
