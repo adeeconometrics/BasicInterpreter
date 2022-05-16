@@ -1,11 +1,23 @@
 
 import java.util.Vector;
 
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+/**
+ *
+ * @author kcrte
+ */
+
 public class Lexer {
     
     String fn, text;
     Position pos;
     char current_char;
+    Error error;
     
     Lexer(String fn, String text){
          this.fn = fn;
@@ -65,8 +77,12 @@ public class Lexer {
                 tokens.add(Token("RPAREN"));
                 this.advance();
             }
-            else
+            else{
+                Position pos_start = this.pos.copy();
+                char holder = this.current_char;
+                this.error = new IllegalCharError(pos_start, this.pos, "'" + holder + "'");
                 return null;
+            }
         }
         
         return tokens;
