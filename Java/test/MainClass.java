@@ -11,8 +11,13 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Arrays;
 
-
+/**
+ * Todo:
+ * - Format TokenType.toString() to represent the entire expression in single line
+ * - catch error for invalid numerical types (#.#.#...)
+ */
 
 enum TokenType {
   // Single-character tokens.
@@ -49,7 +54,7 @@ class Token {
   }
 
   public String toString() {
-    return type + " " + lexeme + " " + literal;
+    return type + ":" + lexeme;
   }
 }
 
@@ -324,10 +329,11 @@ public class MainClass {
     Scanner scanner = new Scanner(source);
     List<Token> tokens = scanner.scanTokens();
 
-    // For now, just print the tokens.
-    for (Token token : tokens) {
-      System.out.println(token);
-    }
+    // For now, just print the tokens.  You need to format this!!
+    // for (Token token : tokens) {
+    //   System.out.println(token);
+    // }
+    System.out.println(Arrays.toString(tokens.toArray()));
   }
   
   static void error(int line, String message) {
