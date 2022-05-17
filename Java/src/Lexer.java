@@ -1,28 +1,29 @@
+package src;
 
 import java.util.Vector;
 
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+import src.Position;
+import src.TokenClass;
 
 /**
- *
- * @author kcrte
+ TODO:
+    - See if this compiles
+    - Check if it works correctly
+    - Address poor code quality
+    - Document the module 
  */
 
 public class Lexer {
     
-    String fn, text;
+    String filename, text;
     Position pos;
     char current_char;
     Error error;
     
-    Lexer(String fn, String text){
-         this.fn = fn;
+    Lexer(String filename, String text){
+         this.filename = filename;
          this.text = text;
-         this.pos = Position(-1, 0, -1, fn, text);
+         this.pos = Position(-1, 0, -1, filename, text);
          this.current_char = ' ';
          this.advance();
     }
@@ -45,8 +46,8 @@ public class Lexer {
         return false;
     }
     
-    public Vector<Token> makeToken(){
-        Vector<Token> tokens = new Vector<Token>();
+    public Vector<TokenClass> makeToken(){
+        Vector<TokenClass> tokens = new Vector<TokenClass>();
         
         while (this.current_char != (char)0){
             if (this.current_char == ' ' || this.current_char == '\t')
@@ -54,32 +55,33 @@ public class Lexer {
             else if (isDigit(this.current_char))
                 tokens.add(this.makeNumber());
             else if (this.current_char == '+'){
-                tokens.add(Token("PLUS"));
+                tokens.add(TokenClass("PLUS"));
                 this.advance();
             }
             else if (this.current_char == '-'){
-                tokens.add(Token("MINUS"));
+                tokens.add(TokenClass("MINUS"));
                 this.advance();
             }
             else if (this.current_char == '*'){
-                tokens.add(Token("MUL"));
+                tokens.add(TokenClass("MUL"));
                 this.advance();
             }
             else if (this.current_char == '/'){
-                tokens.add(Token("DIV"));
+                tokens.add(TokenClass("DIV"));
                 this.advance();
             }
             else if (this.current_char == '('){
-                tokens.add(Token("LPAREN"));
+                tokens.add(TokenClass("LPAREN"));
                 this.advance();
             }
             else if (this.current_char == ')'){
-                tokens.add(Token("RPAREN"));
+                tokens.add(TokenClass("RPAREN"));
                 this.advance();
             }
             else{
                 Position pos_start = this.pos.copy();
                 char holder = this.current_char;
+                // check into this problem
                 this.error = new IllegalCharError(pos_start, this.pos, "'" + holder + "'");
                 return null;
             }
@@ -88,7 +90,7 @@ public class Lexer {
         return tokens;
     }
     
-    Token make_number(){
+    TokenClass make_number(){
         String numStr = "";
         int dotCount = 0;
         
@@ -103,7 +105,8 @@ public class Lexer {
         }
         
         if (dotCount == 0)
-            return Token("INT", numStr);
+            return TokenClass("INT", numStr);
         else
-            return Token("FLOAT", numStr);
+            return TokenClass("FLOAT", numStr);
+    }
 }
