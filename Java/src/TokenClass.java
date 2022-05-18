@@ -16,7 +16,9 @@ public class TokenClass {
     this.literal = literal;
     this.line = line;
   }
-
+  /**
+   * Returns a string representation of TokenClass for analyzing the scanned tokens.
+   */
   public String toString() {
     // if(type == TokenType.IDENTIFIER) 
       // return type + ":" + lexeme + ":" + literal;

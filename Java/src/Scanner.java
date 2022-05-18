@@ -1,3 +1,6 @@
+/**
+ * @brief This contains methods related to the Tokenizing text
+ */
 package src;
 
 import java.util.HashMap;
@@ -49,6 +52,10 @@ public class Scanner{
     this.source = source;
   }
 
+  /**
+   * Scans the source text passed on the class and returns a list of valid tokens
+   * @return ArrayList<TokenClass>
+   */
   ArrayList<TokenClass> scanTokens() {
     while (!isAtEnd()) {
       // We are at the beginning of the next lexeme.
