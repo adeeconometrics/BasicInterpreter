@@ -1,0 +1,29 @@
+package src;
+
+enum TokenType {
+  // Single-character tokens.
+  LEFT_PAREN, RIGHT_PAREN, LEFT_BRACE, RIGHT_BRACE,
+  COMMA, DOT, MINUS, PLUS, SEMICOLON, SLASH, STAR,
+
+  // One or two character tokens.
+  BANG, BANG_EQUAL,
+  EQUAL, EQUAL_EQUAL,
+  GREATER, GREATER_EQUAL,
+  LESS, LESS_EQUAL,
+
+  // Literals.
+  IDENTIFIER, STRING,
+
+  // Keywords.
+  LET, DATA, READ, RESTORE, DIM,
+
+  IF, THEN, ELSE, FOR, TO, STEP, NEXT, WHILE, WEND, REPEAT,
+  UNTIL, DO, LOOP, GOTO, ON, GOSUB, DEF, FN, 
+
+  LIST, PRINT, INPUT, TAB, SPC,
+  REM, USR, CALL, TRON, TROFF, ASM,
+  ABS, ATN, COS, EXP, LOG, RND, SIN, TAN, SQR, 
+  INT, FLOAT,
+
+  EOF
+}
