@@ -79,7 +79,7 @@ public class Scanner{
       case '-': addToken(TokenType.MINUS); break;
       case '+': addToken(TokenType.PLUS); break;
       case ';': addToken(TokenType.SEMICOLON); break;
-      case '*': addToken(TokenType.STAR); break; 
+      case '*': addToken(TokenType.MUL); break; 
 
       case '!':
         addToken(match('=') ? TokenType.BANG_EQUAL : TokenType.BANG);
@@ -150,11 +150,9 @@ public class Scanner{
     }
 
     if(dotCount == 0) {
-      addToken(TokenType.INT,
-        Integer.parseInt(numStr));
+      addToken(TokenType.INT);
     } else if(dotCount == 1) {
-      addToken(TokenType.FLOAT,
-        Double.parseDouble(numStr));
+      addToken(TokenType.FLOAT);
     }
     // else {
     //   Main.error(line, "Unexpected digit format.");
